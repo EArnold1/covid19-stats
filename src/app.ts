@@ -1,4 +1,6 @@
 import axios from 'axios';
+import L from 'leaflet';
+import { tileUrl, attribution, circleObj } from './utils/utils';
 
 const form = document.querySelector('form')!;
 const input = document.getElementById('search')! as HTMLInputElement;
@@ -12,8 +14,8 @@ type Result = {
   Date: Date;
   Active: number;
   Confirmed: number;
-  Lat?: number;
-  Lon?: number;
+  Lat: number;
+  Lon: number;
   Country?: string;
   Deaths: string;
 };
@@ -36,6 +38,18 @@ async function searchApi(event: Event): Promise<void> {
     date.classList.add('border');
     const formatedDate = new Date(result.Date);
     date.textContent = `As Of ${formatedDate.toString()}`;
+
+    // Map
+    let map = new L.Map('map', {
+      center: new L.LatLng(result.Lat, result.Lon),
+      zoom: 3,
+    });
+
+    const tiles = L.tileLayer(tileUrl, { attribution });
+    tiles.addTo(map);
+
+    const marker = L.marker([result.Lat, result.Lon]).addTo(map);
+    const circle = L.circle([result.Lat, result.Lon], circleObj).addTo(map);
 
     console.log(result);
   } catch (err) {

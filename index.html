@@ -7,7 +7,7 @@
     <title>COVID-19</title>
 
     <!-- bundle.js -->
-    <script src="dist/bundle.js" defer></script>
+    <script type="module" src="dist/bundle.js" defer></script>
 
     <!-- leaflet links -->
     <link
@@ -29,7 +29,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-
+    <link rel="stylesheet" href="app.css" />
     <!-- font-awesome -->
     <script
       src="https://kit.fontawesome.com/34fc734723.js"
@@ -66,8 +66,8 @@
         </ul>
       </div>
       <br />
-      <div class="container">
-        <div id="mapid"></div>
+      <div class="container pb-5">
+        <div id="map"></div>
       </div>
     </div>
   </body>
