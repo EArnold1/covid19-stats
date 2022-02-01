@@ -6,10 +6,10 @@ const input = document.getElementById('search')! as HTMLInputElement;
 const activeCases = document.getElementById('active')! as HTMLLIElement;
 const confirmedCases = document.getElementById('confirmed')! as HTMLLIElement;
 const deaths = document.getElementById('deaths')! as HTMLLIElement;
-const recovered = document.getElementById('recovered')! as HTMLLIElement;
+const date = document.getElementById('date')! as HTMLParagraphElement;
 
 type Result = {
-  Recovered: number;
+  Date: Date;
   Active: number;
   Confirmed: number;
   Lat?: number;
@@ -33,7 +33,9 @@ async function searchApi(event: Event): Promise<void> {
     activeCases.textContent = result.Active.toString();
     confirmedCases.textContent = result.Confirmed.toString();
     deaths.textContent = result.Deaths.toString();
-    recovered.textContent = result.Recovered.toString();
+    date.classList.add('border');
+    const formatedDate = new Date(result.Date);
+    date.textContent = `As Of ${formatedDate.toString()}`;
 
     console.log(result);
   } catch (err) {

@@ -11,6 +11,7 @@
   "author": "Arnold Emmanuel W.",
   "license": "ISC",
   "dependencies": {
+    "@types/leaflet": "^1.7.9",
     "axios": "^0.25.0"
   },
   "devDependencies": {
