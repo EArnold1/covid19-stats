@@ -9,6 +9,7 @@ const activeCases = document.getElementById('active')! as HTMLLIElement;
 const confirmedCases = document.getElementById('confirmed')! as HTMLLIElement;
 const deaths = document.getElementById('deaths')! as HTMLLIElement;
 const date = document.getElementById('date')! as HTMLParagraphElement;
+const mapId = document.getElementById('map')! as HTMLDivElement;
 
 type Result = {
   Date: Date;
@@ -40,9 +41,12 @@ async function searchApi(event: Event): Promise<void> {
     date.textContent = `As Of ${formatedDate.toString()}`;
 
     // Map
+    mapId.classList.add('map');
     let map = new L.Map('map', {
       center: new L.LatLng(result.Lat, result.Lon),
-      zoom: 3,
+      zoom: 5,
+      maxZoom: 5,
+      minZoom: 2,
     });
 
     const tiles = L.tileLayer(tileUrl, { attribution });
