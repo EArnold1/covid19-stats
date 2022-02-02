@@ -1,6 +1,9 @@
 import axios from 'axios';
 import L from 'leaflet';
 import { tileUrl, attribution, circleObj } from './utils/utils';
+import { setChart } from './charts';
+
+setChart();
 
 const form = document.querySelector('form')!;
 const input = document.getElementById('search')! as HTMLInputElement;
@@ -45,7 +48,7 @@ async function searchApi(event: Event): Promise<void> {
     let map = new L.Map('map', {
       center: new L.LatLng(result.Lat, result.Lon),
       zoom: 5,
-      maxZoom: 5,
+      maxZoom: 9,
       minZoom: 2,
     });
 
